@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liftmaster</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <style> 
         body, html {
             height: 100%;
@@ -13,7 +14,7 @@
         
         .bg {
             /* The image used */
-            background-image: url("https://raw.githubusercontent.com/PhenomenaDev/Liftmaster-Latam/master/under-construction.png");
+            background-image: url("https://raw.githubusercontent.com/PhenomenaDev/Liftmaster-Latam/development/nuevaConstruccion.png");
             /* Full height */
             height: 100%;
             /* Center and scale the image nicely */
@@ -21,9 +22,575 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
+        .timer{
+            background-color: #ffffff;
+            text-align: center;
+            margin-top: 5%;
+            margin-bottom: 5%;
+
+        }
+        .timer h1{
+            font-size: 40px;
+        }
+        .locations{
+            background-color: #BF1736;
+        }
+        .dropdown{
+            text-align: center;
+            margin-top: 2%;
+            margin-bottom: 5%;
+        }
+        .data-item{
+            margin-left: 10%;
+            color: #ffffff;
+            margin-top: 5%;
+        }
+        .data-item a{
+            color: #ffffff !important;
+        }
+
+
       </style>
 </head>
-<body class="bg">
+
+<body>
+    <div class="bg"></div>
+    <div class="timer">
+        <h1 id="timer"></h1>
+    </div>
+    <div class="locations">
+        <h1 style="text-align: center; padding-top: 10%; color: #ffffff; font-size: 40px;">Localiza tu distribuidor más cercano</h1>
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Selecciona tu país
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <button class="dropdown-item" type="button" onclick="displayData('co')">Colombia</button>
+              <button class="dropdown-item" type="button" onclick="displayData('cr')">Costa Rica</button>
+              <button class="dropdown-item" type="button" onclick="displayData('ec')">Ecuador</button>
+              <button class="dropdown-item" type="button" onclick="displayData('sv')">El Salvador</button>
+              <button class="dropdown-item" type="button" onclick="displayData('gt')">Guatemala</button>
+              <button class="dropdown-item" type="button" onclick="displayData('hn')">Honduras</button>
+              <button class="dropdown-item" type="button" onclick="displayData('mx')">México</button>
+              <button class="dropdown-item" type="button" onclick="displayData('ni')">Nicaragua</button>
+              <button class="dropdown-item" type="button" onclick="displayData('pa')">Panamá</button>
+            </div>
+        </div>
+        <div class="containter">
+            <div class="row">
+                <div id = "map"  class = "col-sm" style="border: solid"></div>
+                <div id = "data" class = "col-sm" style="border: solid"></div>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    
+    // Set the date we're counting down to
+    var countDownDate = new Date("Dec 25, 2020 12:00:00").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+    // Get today's date and time
+    var now = new Date().getTime();
+        
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+        
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+    // Output the result in an element with id="demo"
+    document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+        
+    // If the count down is over, write some text 
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "Time is over";
+    }
+    }, 1000);
+
+</script>
+
+<script>
+    function displayData(country){
+
+        switch(country){
+
+            case 'co':
+                //displayMap('co')
+                document.getElementById('data').innerHTML =
+                    `<div class="data-item">
+                        <h4>Garajes Prefabricados</h4>
+                        <a href="http://www.garajesprefabricados.com">www.garajesprefabricados.com</a>
+                        <p>57 (5) 386 0165<p/>
+                        <p>Parque Industrial EUROPARK, Av. Circunvalar, Calle 110 No. 3 - 79 Bod. 8 Barranquilla</p>
+                    </div>
+                    <div class="data-item">
+                        <h4>Garajes Prefabricados</h4>
+                        <a href="http://www.garajesprefabricados.com">www.garajesprefabricados.com</a>
+                        <p>57 (1) 745 6510<p/>
+                        <p>Parque Industrial Puerto Central Calle 23 # 116-31 Bod. Fontibon, Bogotá</p>
+                    </div>
+                    <div class="data-item">
+                        <h4>Garajes Prefabricados</h4>
+                        <a href="http://www.garajesprefabricados.com">www.garajesprefabricados.com</a>
+                        <p>57 (2) 485 6190<p/>
+                        <p>Barrio Limonar, Carrera 66 #6 2013 44, Cali</p>
+                    </div>
+                    <div class="data-item">
+                        <h4>Garajes Prefabricados</h4>
+                        <a href="http://www.garajesprefabricados.com">www.garajesprefabricados.com</a>
+                        <p>57 (4) 605 11 16<p/>
+                        <p>Barrio Colombia, Carrera 43F # 17 - 661 Local B, Medellín, Colombia</p>
+                    </div>
+                    <div class="data-item">
+                        <h4>Garajes Prefabricados</h4>
+                        <a href="http://www.garajesprefabricados.com">www.garajesprefabricados.com</a>
+                        <p>57 (5) 588 51 52<p/>
+                        <p>Barrio Gaiten, Carrera 11 #19 -90 Valledupar, Colombia</p>
+                    </div>
+                    <div class="data-item">
+                        <h4>Garajes Prefabricados</h4>
+                        <a href="http://www.garajesprefabricados.com">www.garajesprefabricados.com</a>
+                        <p>57 (6) 340 0906<p/>
+                        <p>Barrio Av. 30 de agosto Carrera 13 #32 - 55, Pereira, Colombia</p>
+                    </div>
+                    <div class="data-item">
+                        <h4>Garajes Prefabricados</h4>
+                        <a href="http://www.garajesprefabricados.com">www.garajesprefabricados.com</a>
+                        <p>57 (4) 789 4191<p/>
+                        <p>Barrio Monterueda Moderno Calle 37 #8 - 44, Montería, Colombia</p>
+                    </div>
+                    <div class="data-item">
+                        <h4>Garajes Prefabricados</h4>
+                        <a href="http://www.garajesprefabricados.com">www.garajesprefabricados.com</a>
+                        <p>57 (5) 276 4418<p/>
+                        <p>Barrio La Pajuela Calle 22 # 15 - 28 Piso 1 Local 4, Sincelejo, Colombia</p>
+                    </div>
+                    <div class="data-item">
+                        <h4>Garajes Prefabricados</h4>
+                        <a href="http://www.garajesprefabricados.com">www.garajesprefabricados.com</a>
+                        <p>57 (7) 697 2172<p/>
+                        <p>Barrio Bolivar Av. La Rosita #24 - 88, Bucaramanga, Colombia</p>
+                    </div>
+                    <div class="data-item">
+                        <h4>Merik Doors & Docks de Colombia</h4>
+                        <a href="http://www.merik.com">www.merik.com</a>
+                        <p>57 (1) 745 2600<p/>
+                        <p>Calle 63d #70d - 59</p>
+                    </div>
+                    <div class="data-item">
+                        <h4>Merik Doors & Docks de Colombia</h4>
+                        <a href="http://www.merik.com">www.merik.com</a>
+                        <p>57 (5) 382 2993<p/>
+                        <p>Cra 34 No. 107 - 79, Barranquilla</p>
+                    </div>
+                    <div class="data-item">
+                        <h4>Merik Doors & Docks de Colombia</h4>
+                        <a href="http://www.merik.com">www.merik.com</a>
+                        <p>57 (1) 745 2600<p/>
+                        <p>Calle 20 A N. 39 A-14, Bodega Int. 1, Zona Industrial Quinta Paredes, Bogotá, Colombia</p>
+                    </div>
+                    
+                    ` ;
+                
+                break;
+        
+            case 'cr':
+                    //displayMap('cr');
+                    document.getElementById('data').innerHTML = `
+                    <div class="data-item">
+                            <h4>Accesos Automáticos</h4>
+                            <a href="http://www.accesosautomaticos.com">www.accesosautomaticos.com</a>
+                            <p>(506) 2227 0909<p/>
+                            <p>Zapote, 200 mts sur de la Rotonda de las Garantias Sociales - San Jose - Costa Rica</p>
+                    </div>
+                    <div class="data-item">
+                            <h4>Hamer Door</h4>
+                            <a href="http://www.portonessalas.com">www.portonessalas.com</a>
+                            <p>(506) 2440 9494<p/>
+                            <p>Urb. Las Canas # 3, CA # 79 Alajuela - Costa Rica</p>
+                    </div>
+                    <div class="data-item">
+                            <h4>Merik Portones de Costa Rica</h4>
+                            <a href="http://www.merik.com">www.merik.com</a>
+                            <p>(506) 2258 5795<p/>
+                            <p>Cinco esquinas de Tiburones, 150 metros oeste de la Clinica Clorito Picado, Tiburones, Heredia, Costa Rica</p>
+                    </div>
+                    `;
+                break;
+            
+            case 'ec':
+                    //displayMap('ec');
+                    document.getElementById('data').innerHTML = `
+                    <div class="data-item">
+                            <h4>PFC Accesos Automaticos Del Ecuador</h4>
+                            <a href="http://www.pfc.com.ec">www.pfc.com.ec</a>
+                            <p>(593) 2 224 3485<p/>
+                            <p>Isla Genovesa N43-189 y Rio Coca, Quito, Ecuador</p>
+                    </div>
+                    <div class="data-item">
+                            <h4>PFC Accesos Automaticos Del Ecuador</h4>
+                            <a href="http://www.pfc.com.ec">www.pfc.com.ec</a>
+                            <p>(593) 04 269 1139<p/>
+                            <p>CDLA Los Alamos de la Atarazana, Mz 117 K, Solar 13, (Detras de Comandato), Guayaquil</p>
+                    </div>
+                    <div class="data-item">
+                            <h4>GVM Automatismo</h4>
+                            <a href="mailto:gvm.automatismos@gmail.com">gvm.automatismos@gmail.com</a>
+                            <p>(593) 987 832900<p/>
+                            <p>Centro Comercial HOME DESIGNS CUMBAYA / Local 13 – Planta Baja, Cumbayá - Quito</p>
+                    </div>
+                    <div class="data-item">
+                            <h4>GVM Automatismo</h4>
+                            <a href="mailto:gvm.automatismos@outlook.com">gvm.automatismos@outlook.com</a>
+                            <p>(593) 2 281 4642<p/>
+                            <p>De Las Fuccias E11-36 y De Los Guabos (Sector San Isidro del Inca), Quito, Ecuador</p>
+                    </div>
+                    <div class="data-item">
+                            <h4>Metalicas Suntaxi</h4>
+                            <a href="mailto:puertas@metalicasuntaxi.com">puertas@metalicasuntaxi.com</a>
+                            <p>(593) 02 2896458<p/>
+                            <p>María Angélica Idrovo Oe2-36 y Vía del Ferrocarril, Cumbayá, Quito, Ecuador</p>
+                    </div>
+                    <div class="data-item">
+                            <h4>Metalicas Suntaxi</h4>
+                            <a href="mailto:puertas@metalicasuntaxi.com">puertas@metalicasuntaxi.com</a>
+                            <p>(593) 02 3564823<p/>
+                            <p>Ruta via Km 1, Santa Rosa de Cumbayá</p>
+                    </div>
+
+                `;
+                break;
+
+            case ('sv'):
+                //displayMap('sv');
+                document.getElementById('data').innerHTML = `
+                    <div class="data-item">
+                                <h4>Castella Sagarra</h4>
+                                <a href="http://www.castellasagarra.com">www.castellasagarra.com</a>
+                                <p>(503) 2298 3033<p/>
+                                <p>Alameda Dr. Manuel E. Araujo, Pje. Carbonell, Col. Roma. San Salvador, El Salvador</p>
+                    </div>
+                `;
+                break;
+
+            case ('gt'):
+            //displayMap('gt');
+            document.getElementById('data').innerHTML = `
+                <div class="data-item">
+                            <h4>Automatika</h4>
+                            <a href="http://accesosautomaticos.com">accesosautomaticos.com</a>
+                            <p>(502) 2363 4444<p/>
+                            <p>Diagonal 6 16-23 en Zona 10 Centro Comercial La Villa, Ciudad Guatemala, Guatemala</p>
+                </div>
+                <div class="data-item">
+                            <h4>Merik Portones de Centroamerica</h4>
+                            <a href="http://merik.com/gt">merik.com/gt</a>
+                            <p>(502) 2208 1600<p/>
+                            <p>1ra Calle 34-58, Zona 11, Col. Toledo, Ciudad de Guatemala</p>
+                </div>
+                <div class="data-item">
+                            <h4>Grupo DICORP</h4>
+                            <a href="http://grupodicorp.com/">grupodicorp.com</a>
+                            <p>(502) 5000 5035<p/>
+                            <p>3 CALLE A 12-05 Zona 2 Colonia La Escuadrilla, Mixco, Guatemala</p>
+                </div>
+            `;
+            break;
+            
+            case ('hn'):
+                //displayMap('hn');
+                document.getElementById('data').innerHTML = `
+                    <div class="data-item">
+                                <h4>Distribuidora Larach</h4>
+                                <a href="http://colarach.com">www.colarach.com</a>
+                                <p>(504) 2552 9500<p/>
+                                <p>Barrio Las Acacias, 13 y 14 calles, 4ta. Avenida, N.O. San Pedro Sula, Honduras</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>IMFERRA - Importadora Ferretera</h4>
+                                <a href="https://imferra.com">www.imferra.com</a>
+                                <p>(504) 2554 1848<p/>
+                                <p>17 Calle Circunvalacion, 5 y 6 Avenidas, S.E. San Pedro Sula, Honduras</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>Portomax S de RL</h4>
+                                <a href="mailto:info@portomax.hn">info@portomax.hn</a>
+                                <p>(504) 2235 7651 o (504) 2235 7340<p/>
+                                <p>2 calle Edificio Portomax no. 472. Col. Alameda. 70 m al sur de Delikatessen</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>Portomax S de RL</h4>
+                                <a href="mailto:info@portomax.hn">info@portomax.hn</a>
+                                <p>(504) 2250 1133 o (504) 2250 0949 o (504) 2510 5824<p/>
+                                <p>Edificio Portomax # 55 Barrio Barandillas 1 calle 8 -9 Ave. Boulevard del Este, Salida nueva a La Lima</p>
+                    </div>
+                `;
+                break;
+
+            case('mx'):
+
+                    //displayMap('mx');
+                    document.getElementById('data').innerHTML = `
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Aguascalientes</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(449) 972.8487<p/>
+                                <p>Av. Siglo XXI N. 903, Fracc. Rodolfo Landeros, 20270, Aguascalientes, Ags</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Alchichica</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(282) 832 0550<p/>
+                                <p>Carretera Mexico - Veracruz Km. 78 Municipio Tepeyahualco, Alchichica 73996, Puebla, Pue.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal BC - Mexicali</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(686) 556 7024<p/>
+                                <p>Calle de la Industria N. 535-B, Col. Industrial, 21010, Mexicali, B.C.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal BC - Tijuana</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(664) 625 1747<p/>
+                                <p>Calle La Bocana N. 21407, Fraccionamiento Ampliacion Guaycura, 22570, Tijuana, B.C.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal BCS - La Paz</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(612) 124 2823<p/>
+                                <p>Calle Nueva, (entre Carretera Norte y Aquiles Serdan), Col. Puesta del Sol, 23090, La Paz, B.C.S.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Chiapas</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(961) 602 7599<p/>
+                                <p>5a. Oriente Sur, N. 1023, entre 9a. Av. Sur y 9a. Privada Sur, Col. Centro, 29000, Tuxtla, Gutierrez, Chis</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Chihuahua</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(614) 412 0225<p/>
+                                <p>Calle 4a. N. 3607, Col. Santa Rosa, 31050, Chihuahua, Chih.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Ciudad Obregón</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(644) 413 7282<p/>
+                                <p>Tlaxcala N. 170 Norte, Local A (entre Allende e Hidalgo), Col. Centro, 85000, Cd. Obregon, Son.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Coahuila</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(871) 169 2951<p/>
+                                <p>Av. Juarez N. 5996 Oriente, Fracc. San Felipe, 27089, Torreon, Coah.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal DF - Oriente</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(55) 5582 1810<p/>
+                                <p>Calle Dos N. 118, Col. Granjas San Antonio, 09070, Iztapalapa, Mexico D.F.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal DF - Norte</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>555 333 9900<p/>
+                                <p>Poniente 152, No. 929, Colonia Vallejo Industrial, Mexico DF, Mexico</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Guanajuato</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(477) 194 4907<p/>
+                                <p>Blvd. Espilon NO. 1039 Col. San Juan Bautista, Gto.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Jalisco</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(33) 3620 6011<p/>
+                                <p>Lopez Mateos Sur No. 4550, Bodega 7 a dos cuadras de Periferico, Col. Francisco Sarabia, (frente de Rattan Muebles - Acceso por calle Anastasio Bustamante) Cp. 45236, Zapopan, Jalisco</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Los Mochis</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(668) 812 3412<p/>
+                                <p>Marcial Ordoez No. 239-D Col. Bienestar, Los Mochis, Sinaloa C.P. 81280</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Michoacan</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(443) 298 0300<p/>
+                                <p>Av. Periodismo N. 2001, Col. Jardines de Torremolinos, 58197, Morelia, Mich.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Morelos</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(777) 372 7598<p/>
+                                <p>Vicente Estrada Cajigal N. 517 Letra A, Lomas de la Selva, Cuernavaca Morelos C.P. 62270 CR 62251</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Nayarit</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(311) 210 1074<p/>
+                                <p>Camino Viejo a San Blas N. 22, (entre Mirador y Rosal), Col. Rincon de San Juan, 63138, Tepic, Nay.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Nuevo Leon</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(81) 8321 4948<p/>
+                                <p>Calle del Altillo N. 220, Bodega 21, Fracc. Villa de San Miguel, 67110, Guadalupe, N.L.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Pachuca</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(771) 107 1475<p/>
+                                <p>Calle 8 Nuba 103 Col. Ampliacion Santa Julia, Pachuca de Soto Hidalgo C.P. 42080</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Puebla</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(222) 179 8871<p/>
+                                <p>Prolongacion 11 Sur N. 14101, Col. San Bernabeu Temoxtitla, 72498, Puebla, Pue.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Queretaro</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(442) 222 4126<p/>
+                                <p>Acceso III N. 42, Bodega 15, Parque Ind. Benito Juarez, 76120, Queretaro, Qro.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Quintana Roo</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(998) 843 3945<p/>
+                                <p>Blvd. Luis Donaldo Colosio Km. 2, Mz. 13, SM 309, Bodega 2, 77560, Cancun, Q. Roo.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal San Luis Potosí</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(444) 824 1380<p/>
+                                <p>Eje 134 N. 175, Col. Zona Industrial, 78395, San Luis Potosi, S.L.P.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Sinaloa</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(667) 750 2809<p/>
+                                <p>Blvd. San Angel N. 3077, Fracc. San Benito, 80246, Culiacan, Sin</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Sonora</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(662) 261 0121<p/>
+                                <p>Campeche 476-C Entre Adalberto Truqui y Clemente Avila Col. Pimentel, 83188, , Hermosillo, Son.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Tabasco</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(993) 315.2594<p/>
+                                <p>Bodega 1, Rancheria Sabina, Municipio de Centro, 86153, Villahermosa, Tab.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Valle de Toluca</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(722) 278 6061<p/>
+                                <p>Av. Jose Maria Morelos N. 810, entre Priv. Jose Maria Morelos y Canutillo, Barrio La Veracruz Zinacantepec, 51350, Toluca, Edo. de Mex.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Veracruz</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(229) 937 4480<p/>
+                                <p>Prolong. Jimenez Sur, esq. Calle 1, Col. Pedro I. Mata, 91799, Veracruz, Ver.</p>
+                    </div>
+                    <div class="data-item">
+                                <h4>MERIK - Sucursal Yucatan</h4>
+                                <a href="http://www.merik.com/mx">www.merik.com/mx</a>
+                                <p>(999) 167 5552<p/>
+                                <p>Carr. Fed. Motul-Tizimin, K.m. 2.5 del Periferico, entronque Cholul-Silpach, Predio sn, 97305, Merida, Yuc.</p>
+                    </div>
+                `;
+                break;
+
+            case ('ni'):
+            //displayMap('ni');
+            document.getElementById('data').innerHTML = `
+                <div class="data-item">
+                            <h4>Portel - Danilo Salinas y CIA</h4>
+                            <a href="http://portoneselectricos.net">portoneselectricos.net</a>
+                            <p>(505) 2278 5340<p/>
+                            <p>Plaza Barcelona No.10, Managua, Nicaragua</p>
+                </div>
+            `;
+            break;
+
+            case ('pa'):
+            //displayMap('pa');
+            document.getElementById('data').innerHTML = `
+                <div class="data-item">
+                            <h4>Accesos Automaticos de Panama S.A.</h4>
+                            <a href="http://accesos.com.pa">accesos.com.pa</a>
+                            <p>(507) 387 0909<p/>
+                            <p>Plaza Agora, Via Transistmica, Local 48, contiguo al Seguro Social</p>
+                </div>
+                <div class="data-item">
+                            <h4>Door and Docks de Panama</h4>
+                            <a href="http://www.merik.com/pa">merik.com/pa</a>
+                            <p>(507) 260 0300<p/>
+                            <p>Urbanizacion Industrial Los Angeles, Calle 1 Harry Eno, Local 1. Panama, Panama</p>
+                </div>
+                <div class="data-item">
+                            <h4>Herreria Barrios</h4>
+                            <a href="http://www.herreriabarrios.com">herreriabarrios.com</a>
+                            <p>(507) 261 9226<p/>
+                            <p>Calle 23 Pueblo Nuevo, detras del Jardin El Bosque. Panama, Panama</p>
+                </div>
+                <div class="data-item">
+                            <h4>Herreria Santiago</h4>
+                            <a href="http://www.herreriasantiago.com">herreriasantiago.com</a>
+                            <p>(507) 261-0717<p/>
+                            <p>Calle 111 en Proyecto Pueblo Nuevo, 544 Zona 9A, Panama, Panama</p>
+                </div>
+            `;
+            break;
+            
+            case ('pe'):
+            //displayMap('pa');
+            document.getElementById('data').innerHTML = `
+                <div class="data-item">
+                            <h4>Accesos Automaticos</h4>
+                            <a href="http://accesosautomaticossac.com">accesosautomaticossac.com</a>
+                            <p>51 (1) 2718562<p/>
+                            <p>Av. Alfredo Benavides # 2868, Miraflores, Lima</p>
+                </div>
+                <div class="data-item">
+                            <h4>Corporation Grans S.A.C.</h4>
+                            <a href="http://grans.pe">grans.pe</a>
+                            <p>(511) 489-7207<p/>
+                            <p>Av. Republica de Colombia 159, Of.2, San Isidro, Lima Peru</p>
+                </div>
+            `;
+            break;
+            
+
+            default:
+                break;
+
+        }
+
+    }
+</script>
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
 </body>
 </html>
