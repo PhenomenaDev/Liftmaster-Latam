@@ -6,6 +6,7 @@
     <title>Liftmaster</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;900&display=swap" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAF0Kl43MZE69-pGls4HAe87jrrvGj0sUU&callback=initMap&libraries=&v=weekly" defer></script>
     <style> 
         body, html {
             height: 100%;
@@ -64,6 +65,7 @@
         .media{
             text-align: left!important;
             color: #ffffff;
+            align-items: center !important;
         }
         .redes{
             margin-left: 10px;
@@ -76,6 +78,7 @@
             height: 35px;
             font-size: 15px;
         }
+
 
 
       </style>
@@ -108,7 +111,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div id = "map"  class = "col-sm"></div>
+                <div id = "map"  class = "col-sm" style="height: 400px;"></div>
             </div>
             <div class="row">
                 <div id = "data" class = "col-sm"></div>
@@ -126,7 +129,7 @@
             <div class="col-sm" style="margin:auto;">
             
                 <div class="media">
-                    <img src="..." class="mr-3">
+                    <img src="https://raw.githubusercontent.com/PhenomenaDev/Liftmaster-Latam/development/Footer/MEXICO-01.png" class="mr-3" width="90px">
                     <div class="media-body">
                       <h5 class="mt-0">México</h5>
                       <h5 class="mt-1">+52 (55) 8526-6363</h5>
@@ -134,10 +137,10 @@
                 </div>
 
             </div>
-            <div class="col-sm" style="margin:auto;">
+            <div class="col-sm" style="text-align: center;">
             
                 <div class="media">
-                    <img src="..." class="mr-3">
+                    <img src="https://raw.githubusercontent.com/PhenomenaDev/Liftmaster-Latam/development/Footer/CENTROAMERICA-01.png" class="mr-3" width="90px">
                     <div class="media-body">
                       <h5 class="mt-0">Centroamérica</h5>
                       <h5 class="mt-1">+506 (4) 00 106 71</h5>
@@ -148,7 +151,7 @@
             <div class="col-sm" style="text-align: center;">
             
                 <div class="media">
-                    <img src="..." class="mr-3">
+                    <img src="https://raw.githubusercontent.com/PhenomenaDev/Liftmaster-Latam/development/Footer/SUDAMERICA-01.png" class="mr-3" width="90px">
                     <div class="media-body">
                       <h5 class="mt-0">Sudamérica</h5>
                       <h5 class="mt-1">+571 381-0699</h5>
@@ -157,7 +160,7 @@
             
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-top: 45px; margin-bottom: 20px;">
             <div class="col" style="text-align: center;">
                 <img src="https://github.com/PhenomenaDev/Liftmaster-Latam/raw/development/Logo%20LiftMaster%20Blanco.png" width="20%">
             </div>
@@ -303,7 +306,8 @@
                 break;
         
             case 'cr':
-                    //displayMap('cr');
+                    initMap();
+
                     document.getElementById('data').innerHTML = `
                     <div class="data-item">
                             <h4>SUCURSAL - Accesos Automáticos</h4>
@@ -664,6 +668,34 @@
 
         }
 
+    }
+</script>
+
+<script>
+    let map ;
+    function initMap() {
+
+
+        map = new google.maps.Map(document.getElementById("map"), 
+            {
+                center: { lat: 9.748917, lng: -83.753428},
+                zoom: 8,
+            }
+        );
+
+        var marker1 = new google.maps.Marker(
+            {
+                position: { lat: 9.920083, lng: -84.061972},
+                map: map
+            }
+        )
+
+        var marker2 = new google.maps.Marker(
+            {
+                position: { lat: 10.016000, lng: -84.214000},
+                map: map
+            }
+        )
     }
 </script>
 
