@@ -107,6 +107,7 @@
               <button class="dropdown-item" type="button" onclick="displayData('mx')">México</button>
               <button class="dropdown-item" type="button" onclick="displayData('ni')">Nicaragua</button>
               <button class="dropdown-item" type="button" onclick="displayData('pa')">Panamá</button>
+              <button class="dropdown-item" type="button" onclick="displayData('pe')">Perú</button>
             </div>
         </div>
         <div class="container">
@@ -227,6 +228,7 @@
 
             case 'co':
                 //displayMap('co')
+                colombia()
                 document.getElementById('data').innerHTML =
                     `<div class="data-item">
                         <h4>SUCURSAL - Garajes Prefabricados</h4>
@@ -306,7 +308,7 @@
                 break;
         
             case 'cr':
-                    initMap();
+                    costaRica();
 
                     document.getElementById('data').innerHTML = `
                     <div class="data-item">
@@ -326,6 +328,7 @@
             
             case 'ec':
                     //displayMap('ec');
+                    ecuador();
                     document.getElementById('data').innerHTML = `
                     <div class="data-item">
                             <h4>SUCURSAL - PFC Accesos Automáticos Del Ecuador</h4>
@@ -368,6 +371,7 @@
                 break;
 
             case ('sv'):
+            salvador()
                 //displayMap('sv');
                 document.getElementById('data').innerHTML = `
                     <div class="data-item">
@@ -380,6 +384,7 @@
                 break;
 
             case ('gt'):
+            guatemala()
             //displayMap('gt');
             document.getElementById('data').innerHTML = `
                 <div class="data-item">
@@ -404,6 +409,7 @@
             break;
             
             case ('hn'):
+            honduras()
                 //displayMap('hn');
                 document.getElementById('data').innerHTML = `
                     <div class="data-item">
@@ -428,7 +434,7 @@
                 break;
 
             case('mx'):
-
+                    mexico()
                     //displayMap('mx');
                     document.getElementById('data').innerHTML = `
                     <div class="data-item">
@@ -609,6 +615,7 @@
                 break;
 
             case ('ni'):
+            nicaragua()
             //displayMap('ni');
             document.getElementById('data').innerHTML = `
                 <div class="data-item">
@@ -621,6 +628,8 @@
             break;
 
             case ('pa'):
+
+            panama()
             //displayMap('pa');
             document.getElementById('data').innerHTML = `
                 <div class="data-item">
@@ -645,6 +654,7 @@
             break;
             
             case ('pe'):
+            peru()
             //displayMap('pa');
             document.getElementById('data').innerHTML = `
                 <div class="data-item">
@@ -662,7 +672,6 @@
             `;
             break;
             
-
             default:
                 break;
 
@@ -672,30 +681,714 @@
 </script>
 
 <script>
+    let places = {
+    "co":[
+        {
+            "name":"GARAJES PREFABRICADOS",
+            "address":"Parque Industrial EUROPARK, Av. Circunvalar, Calle 110 No. 3 - 79 Bod. 8 Barranquilla",
+            "phone":"57 (5) 386 01 65",
+            "site":"http:\/\/www.garajesprefabricados.com",
+            "latitude":10.9396738,
+            "longitude":-74.8339192
+        },
+        {
+            "name":"GARAJES PREFABRICADOS",
+            "address":"Parque Industrial Puerto Central\u00a0 Calle 23 # 116-31 Bod 28\u00a0 Fontibon, Bogot\u00e1",
+            "phone":"57 (1) 745 65 10",
+            "site":"http:\/\/www.garajesprefabricados.com",
+            "latitude":4.6894103,
+            "longitude":-74.1474047
+        },
+        {
+            "name":"GARAJES PREFABRICADOS",
+            "address":"Barrio Limonar, Carrera 66 # 6 \u2013 44, Cali",
+            "phone":"57 (2) 485 61 90",
+            "site":"http:\/\/www.garajesprefabricados.com",
+            "latitude":3.3982387,
+            "longitude":-76.5451978
+        },
+        {
+            "name":"GARAJES PREFABRICADOS",
+            "address":"Barrio Colombia, Carrera 43F # 17 - 661 Local B, Medell\u00edn, Colombia",
+            "phone":"57 (4) 605 11 16",
+            "site":"http:\/\/www.garajesprefabricados.com",
+            "latitude":6.2234379,
+            "longitude":-75.5714356
+        },
+        {
+            "name":"GARAJES PREFABRICADOS",
+            "address":"Barrio Gait\u00e1n \/ Carrera 11 # 19 - 90, Valledupar, Colombia",
+            "phone":"57 (5) 588 51 52",
+            "site":"http:\/\/www.garajesprefabricados.com",
+            "latitude":10.4698195,
+            "longitude":-73.245462
+        },
+        {
+            "name":"GARAJES PREFABRICADOS",
+            "address":" Barrio Av. 30 de Agosto \/ Av 30 de Agosto Carrera 13 # 32 - 55, Pereira, Colombia",
+            "phone":"57 (6) 340 09 06",
+            "site":"http:\/\/www.garajesprefabricados.com",
+            "latitude":4.8118192,
+            "longitude":-75.7057673
+        },
+        {
+            "name":"GARAJES PREFABRICADOS",
+            "address":"Barrio Monter\u00eda Moderno \/ Calle 37 # 8 - 44, Monteria, Colombia",
+            "phone":"57 (4) 789 41 91",
+            "site":"http:\/\/www.garajesprefabricados.com",
+            "latitude":8.7587786,
+            "longitude":-75.8787638
+        },
+        {
+            "name":"GARAJES PREFABRICADOS",
+            "address":"Barrio La Pajuela \/ Calle 22 # 15 - 28 Piso 1 Local 4, Sincelejo, Colombia",
+            "phone":"57 (5) 276 44 18",
+            "site":"http:\/\/www.garajesprefabricados.com",
+            "latitude":9.3016569,
+            "longitude":-75.3979105
+        },
+        {
+            "name":"GARAJES PREFABRICADOS",
+            "address":"Barrio Bolivar \/ Av. La Rosita # 24 - 88, Bucaramanga, Colombia",
+            "phone":"57 (7) 697 21 72",
+            "site":"http:\/\/www.garajesprefabricados.com\/sucursal-buc",
+            "latitude":7.1178972,
+            "longitude":-73.1178492
+        },
+        {
+            "name":"MERIK DOORS & DOCKS DE COLOMBIA",
+            "address":"Calle 63d # 70d- 59",
+            "phone":"57 (1) 745 2600",
+            "site":"http:\/\/www.merik.com\/co\/",
+            "latitude":4.673727,
+            "longitude":-74.100503
+        },
+        {
+            "name":"MERIK DOORS & DOCKS DE COLOMBIA",
+            "address":"Cra 34 No. 107- 79, Barranquilla",
+            "phone":"57 (5) 382 2993 ",
+            "site":"http:\/\/www.merik.com\/co\/",
+            "latitude":10.9793335,
+            "longitude":-74.8347572
+        },
+        {
+            "name":"MERIK DOORS & DOCKS DE COLOMBIA",
+            "address":"Calle 20 A N. 39 A-14, Bodega Int. 1, Zona Industrial Quinta Paredes, Bogota\u0301, Colombia",
+            "phone":"(571) 745.2600",
+            "site":"http:\/\/www.merik.com.co",
+            "latitude":4.6286465,
+            "longitude":-74.1018233
+        }
+    ],
+    "cr":[
+        {
+            "name":"ACCESOS AUTOMATICOS",
+            "address":"Zapote, 200 mts sur de la Rotonda de las Garantias Sociales - San Jose - Costa Rica",
+            "phone":"(506) 2227 0909",
+            "site":"http:\/\/www.accesosautomaticos.com\/",
+            "latitude":9.948917,
+            "longitude":-84.086907
+        },
+        {
+            "name":"HAMER DOOR",
+            "address":"Urb. Las Canas # 3, CA # 79 Alajuela - Costa Rica",
+            "phone":"(506) 2440 9494",
+            "site":"http:\/\/www.portonessalas.com\/",
+            "latitude":10.0075983,
+            "longitude":-84.2044635
+        },
+        {
+            "name":"MERIK PORTONES DE COSTA RICA",
+            "address":"Cinco esquinas de Tib\u00e1s, 150 metros oeste de la Clinica Clorito Picado, Tib\u00e1s, Heredia, Costa Rica",
+            "phone":"(506) 2258 5795",
+            "site":"http:\/\/www.merik.com\/cr\/",
+            "latitude":9.948917,
+            "longitude":-84.086907
+        }
+    ],
+    "ec":[
+        {
+            "name":"PFC ACCESOS AUTOMATICOS DEL ECUADOR",
+            "address":"Isla Genovesa N43-189 y Rio Coca, Quito, Ecuador",
+            "phone":"(593) 2 224 3485",
+            "site":"www.pfc.com.ec",
+            "latitude":-0.1649877,
+            "longitude":-78.4797167
+        },
+        {
+            "name":"PFC ACCESOS AUTOMATICOS DEL ECUADOR",
+            "address":"CDLA Los Alamos de la Atarazana, Mz 117 K, Solar 13, (Detras de Comandato), Guayaquil",
+            "phone":"(593) 04 269 1139",
+            "site":"www.pfc.com.ec",
+            "latitude":-2.173029,
+            "longitude":-79.888702
+        },
+        {
+            "name":"GVM AUTOMATISMOS",
+            "address":"De Las Fuccias E11-36 y De Los Guabos (Sector San Isidro del Inca), Quito, Ecuador",
+            "phone":"(593) 2 2814642",
+            "site":"gvm.automatismos@outlook.com",
+            "latitude":-0.1313034,
+            "longitude":-78.4716781
+        },
+        {
+            "name":"GVM AUTOMATISMO",
+            "address":"Centro Comercial HOME DESIGNS CUMBAYA / Local 13 – Planta Baja, Cumbayá - Quito",
+            "phone":"(593) 987832900",
+            "site":"gvm.automatismos@gmail.com",
+            "latitude":-0.1991995,
+            "longitude":-78.4348709
+        },
+        {
+            "name":"METALICAS SUNTAXI",
+            "address":"María Angélica Idrovo Oe2-36 y Vía del Ferrocarril, Cumbayá, Quito, Ecuador",
+            "phone":"(593) 02 2896458",
+            "site":"puertas@metalicasuntaxi.com",
+            "latitude":-0.2004645,
+            "longitude":-78.4354946
+        },
+        {
+            "name":"METALICAS SUNTAXI",
+            "address":"Ruta via Km 1, Santa Rosa de Cumbayá",
+            "phone":"(593) 02 3564823",
+            "site":"puertas@metalicasuntaxi.com",
+            "latitude":-0.2095201,
+            "longitude":-78.4642428
+        }
+    ],
+    "sv":[
+        {
+            "name":"CASTELLA SAGARRA",
+            "address":"Alameda Dr. Manuel E. Araujo, Pje. Carbonell, Col. Roma. San Salvador, El Salvador",
+            "phone":"(503) 2298-3033",
+            "site":"http:\/\/www.castellasagarra.com\/",
+            "latitude":13.6976448,
+            "longitude":-89.2270661
+        }
+    ],
+    "gt":[
+        {
+            "name":"AUTOMATIKA",
+            "address":"Diagonal 6 16-23 en Zona 10 Centro Comercial La Villa, Ciudad Guatemala, Guatemala",
+            "phone":"(502) 2363-4444",
+            "site":"http:\/\/accesosautomaticos.com\/",
+            "latitude":14.5911276,
+            "longitude":-90.5035548
+        },
+        {
+            "name":"MERIK PORTONES DE CENTROAMERICA",
+            "address":"1ra Calle 34-58, Zona 11, Col. Toledo, Ciudad de Guatemala",
+            "phone":"(502) 2208 1600",
+            "site":"http:\/\/www.merik.com\/gt\/",
+            "latitude":14.6291822,
+            "longitude":-90.5659066
+        },
+        {
+            "name":"GRUPO DICORP",
+            "address":"3 CALLE A 12-05 Zona 2 Colonia La Escuadrilla, Mixco, Guatemala",
+            "phone":"(502) 5000-5035",
+            "site":"www.grupodicorp.com",
+            "latitude":14.6288376,
+            "longitude":-90.5789497
+        }
+    ],
+    "hn":[
+        {
+            "name":"DISTRIBUIDORA LARACH",
+            "address":"Barrio Las Acacias, 13 y 14 calles, 4ta. Avenida, N.O. San Pedro Sula, Honduras",
+            "phone":"(504) 2552 9500",
+            "site":"https:\/\/colarach.com",
+            "latitude":15.493145,
+            "longitude":-88.022139
+        },
+        {
+            "name":"IMFERRA - IMPORTADORA FERRETERA",
+            "address":"17 Calle Circunvalacion, 5 y 6 Avenidas, S.E. San Pedro Sula, Honduras",
+            "phone":"(504) 2554 1848",
+            "site":"https:\/\/imferra.com\/",
+            "latitude":15.4898135,
+            "longitude":-88.0211467
+        },
+        {
+            "name":"PORTOMAX S de RL",
+            "address":"2 calle Edificio Portomax no. 472. Col. Alameda. 70 m al sur de Delikatessen",
+            "phone":"(504)  2235 7651 \/ (504)  2235 7340",
+            "site":"info@portomax.hn",
+            "latitude":14.0860802,
+            "longitude":-87.1875582
+        },
+        {
+            "name":"PORTOMAX S de RL",
+            "address":"Edificio Portomax # 55 Barrio Barandillas 1 calle 8 -9 Ave. Boulevard del Este, Salida nueva a La Lima",
+            "phone":"(504)  2550 1133 \/ (504) 22550 0949\/ (504) 2510 5824",
+            "site":"info@portomax.hn",
+            "latitude":15.5040697,
+            "longitude":-88.0160156
+        }
+    ],
+    "mx":[
+        {
+            "name":"MERIK - Sucursal Aguascalientes",
+            "address":"Av. Siglo XXI N. 903, Fracc. Rodolfo Landeros, 20270, Aguascalientes, Ags.",
+            "phone":"(449) 972.8487",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":21.9021238,
+            "longitude":-102.2544494
+        },
+        {
+            "name":"MERIK - Sucursal Alchichica",
+            "address":"Carretera Me\u0301xico - Veracruz Km. 78 Municipio Tepeyahualco, Alchichica 73996, Puebla, Pue.",
+            "phone":"(282) 832.0550",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":19.4225492,
+            "longitude":-97.3913454
+        },
+        {
+            "name":"MERIK - Sucursal BC - Mexicali",
+            "address":"Calle de la Industria N. 535-B, Col. Industrial, 21010, Mexicali, B.C.",
+            "phone":"(686) 556.7024",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":32.6456054,
+            "longitude":-115.4682554
+        },
+        {
+            "name":"MERIK - Sucursal BC - Tijuana",
+            "address":"Calle La Bocana N. 21407, Fraccionamiento Ampliacio\u0301n Guaycura, 22570, Tijuana, B.C.",
+            "phone":"(664) 625.1747",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":32.5078964,
+            "longitude":-116.9158807
+        },
+        {
+            "name":"MERIK - Sucursal BCS - La Paz",
+            "address":"Calle Nueva s\/n., (entre Carretera Norte y Aquiles Serda\u0301n), Col. Puesta del Sol, 23090, La Paz, B.C.S.",
+            "phone":"(612) 124.2823",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":24.1333614,
+            "longitude":-110.3378192
+        },
+        {
+            "name":"MERIK - Sucursal Chiapas",
+            "address":"5a. Oriente Sur, N. 1023, entre 9a. Av. Sur y 9a. Privada Sur, Col. Centro, 29000, Tuxtla, Gutie\u0301rrez, Chis.",
+            "phone":"(961) 602.7599",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":16.7453485,
+            "longitude":-93.1126745
+        },
+        {
+            "name":"MERIK - Sucursal Chihuahua",
+            "address":"Calle 4a. N. 3607, Col. Santa Rosa, 31050, Chihuahua, Chih.",
+            "phone":"(614) 412.0225",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":28.6271142,
+            "longitude":-106.0644098
+        },
+        {
+            "name":"MERIK - Sucursal Ciudad Obreg\u00f3n",
+            "address":"Tlaxcala N. 170 Norte, Local A (entre Allende e Hidalgo), Col. Centro, 85000, Cd. Obrego\u0301n, Son.",
+            "phone":"(644) 413.7282",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":27.497828,
+            "longitude":-109.9437048
+        },
+        {
+            "name":"MERIK - Sucursal Coahuila",
+            "address":"Av. Jua\u0301rez N. 5996 Oriente, Fracc. San Felipe, 27089, Torreo\u0301n, Coah.",
+            "phone":"(871) 169.2951",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":25.5379198,
+            "longitude":-103.3789255
+        },
+        {
+            "name":"MERIK - Sucursal DF - Oriente",
+            "address":"Calle Dos N. 118, Col. Granjas San Antonio, 09070, Iztapalapa, Me\u0301xico D.F.",
+            "phone":"(55) 5582.1810",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":19.3579182,
+            "longitude":-99.110338
+        },
+        {
+            "name":"MERIK - Sucursal DF Norte",
+            "address":"Poniente 152, No. 929, Colonia Vallejo Industrial, Mexico DF, Mexico",
+            "phone":"555-333-9900",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":19.5011012,
+            "longitude":-99.1532474
+        },
+        {
+            "name":"MERIK - Sucursal Guanajuato ",
+            "address":"Blvd. Espilon NO. 1039 Col. San Juan Bautista, Gto.",
+            "phone":"(477) 194.4907",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":21.084403,
+            "longitude":-101.6261033
+        },
+        {
+            "name":"MERIK - Sucursal Jalisco",
+            "address":"L\u00f3pez Mateos Sur No. 4550, Bodega 7 a dos cuadras de Perif\u00e9rico, Col. Francisco Sarabia, (frente de Rattan Muebles - Acceso por calle Anastasio Bustamante) Cp. 45236, Zapopan, Jalisco",
+            "phone":"(33) 3620.6011",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":20.6084953,
+            "longitude":-103.4312825
+        },
+        {
+            "name":"MERIK - Sucursal Los Mochis",
+            "address":"Marcial Ordo\u00f1ez No. 239-D Col. Bienestar, Los Mochis, Sinaloa C.P. 81280",
+            "phone":"(668) 812.3412",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":25.7840403,
+            "longitude":-108.9964722
+        },
+        {
+            "name":"MERIK - Sucursal Michoac\u00e1n",
+            "address":"Av. Periodismo N. 2001, Col. Jardines de Torremolinos, 58197, Morelia, Mich.",
+            "phone":"(443) 298.0300",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":19.678016,
+            "longitude":-101.2256677
+        },
+        {
+            "name":"MERIK - Sucursal Morelos",
+            "address":"Vicente Estrada Cajigal N. 517 Letra A, Lomas de la Selva, Cuernavaca Morelos C.P. 62270 CR 62251",
+            "phone":"(777) 372.7598",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":18.94197,
+            "longitude":-99.22824
+        },
+        {
+            "name":"MERIK - Sucursal Nayarit",
+            "address":"Camino Viejo a San Blas N. 22, (entre Mirador y Rosal), Col. Rinco\u0301n de San Juan, 63138, Tepic, Nay.",
+            "phone":"(311) 210.1074",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":21.5017783,
+            "longitude":-104.9166587
+        },
+        {
+            "name":"MERIK - Sucursal Nuevo Le\u00f3n",
+            "address":"Calle del Altillo N. 220, Bodega 21, Fracc. Villa de San Miguel, 67110, Guadalupe, N.L.",
+            "phone":"(81) 8321.4948",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":25.7041815,
+            "longitude":-100.2106808
+        },
+        {
+            "name":"MERIK - Sucursal Pachuca",
+            "address":"Calle 8 N\u00ba 103 Col. Ampliaci\u00f3n Santa Julia, Pachuca de Soto Hidalgo C.P. 42080",
+            "phone":"(771) 107.1475",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":20.1082141,
+            "longitude":-98.7609872
+        },
+        {
+            "name":"MERIK - Sucursal Puebla",
+            "address":"Prolongacio\u0301n 11 Sur N. 14101, Col. San Bernabe\u0301 Temoxtitla, 72498, Puebla, Pue.",
+            "phone":"(222) 179.8871",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":18.97325,
+            "longitude":-98.2612038
+        },
+        {
+            "name":"MERIK - Sucursal Quer\u00e9taro",
+            "address":"Acceso III N. 42, Bodega 15, Parque Ind. Benito Jua\u0301rez, 76120, Quere\u0301taro, Qro.",
+            "phone":"(442) 222.4126",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":20.6442035,
+            "longitude":-100.4356037
+        },
+        {
+            "name":"MERIK - Sucursal Quintana Roo",
+            "address":"Blvd. Luis Donaldo Colosio Km. 2, Mz. 13, SM 309, Bodega 2, 77560, Cancu\u0301n, Q. Roo.",
+            "phone":"(998) 843.3945",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":21.0915043,
+            "longitude":-86.8423928
+        },
+        {
+            "name":"MERIK - Sucursal San Luis Potos\u00ed",
+            "address":"Eje 134 N. 175, Col. Zona Industrial, 78395, San Luis Potosi\u0301, S.L.P.",
+            "phone":"(444) 824.1380",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":22.0679515,
+            "longitude":-100.877546
+        },
+        {
+            "name":"MERIK - Sucursal Sinaloa",
+            "address":"Blvd. San A\u0301ngel N. 3077, Fracc. San Benito, 80246, Culiaca\u0301n, Sin.",
+            "phone":"(667) 750.2809",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":24.7709521,
+            "longitude":-107.3609495
+        },
+        {
+            "name":"MERIK - Sucursal Sonora",
+            "address":"Campeche 476-C Entre Adalberto Truqui y Clemente Avila Col. Pimentel, 83188, , Hermosillo, Son.",
+            "phone":"(662) 261.0121",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":29.0914659,
+            "longitude":-111.0417018
+        },
+        {
+            "name":"MERIK - Sucursal Tabasco",
+            "address":"Bodega 1, Rancheri\u0301a Sabina, Municipio de Centro, 86153, Villahermosa, Tab.",
+            "phone":"(993) 315.2594",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":17.9643534,
+            "longitude":-92.9566097
+        },
+        {
+            "name":"MERIK - Sucursal Valle de Toluca",
+            "address":"Av. Jose\u0301 Mari\u0301a Morelos N. 810, entre Priv. Jose\u0301 Mari\u0301a Morelos y Canutillo, Barrio La Veracruz Zinacantepec, 51350, Toluca, Edo. de Me\u0301x.",
+            "phone":"(722) 278.6061",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":19.2851111,
+            "longitude":-99.7131772
+        },
+        {
+            "name":"MERIK - Sucursal Veracruz",
+            "address":"Prolong. Jime\u0301nez Sur, esq. Calle 1, Col. Pedro I. Mata, 91799, Veracruz, Ver.",
+            "phone":"(229) 937.4480",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":19.1514771,
+            "longitude":-96.1442437
+        },
+        {
+            "name":"MERIK - Sucursal Yucat\u00e1n",
+            "address":"Carr. Fed. Motul-Tizimin, K.m. 2.5 del Perife\u0301rico, entronque Cholul-Silpach, Predio s\/n, 97305, Me\u0301rida, Yuc.",
+            "phone":"(999) 167.5552",
+            "site":"http:\/\/www.merik.com\/mx\/",
+            "latitude":21.0392601,
+            "longitude":-89.5484923
+        }
+    ],
+    "ni":[
+        {
+            "name":"PORTEL - DANILO SALINAS Y CIA",
+            "address":"Plaza Barcelona No.10, Managua, Nicaragua",
+            "phone":"(505) 2278 5340",
+            "site":"http:\/\/portoneselectricos.net\/",
+            "latitude":12.1357099,
+            "longitude":-86.2661271
+        }
+    ],
+    "pa":[
+        {
+            "name":"ACCESOS AUTOMATICOS DE PANAMA, S.A.",
+            "address":"Plaza Agora, Via Transistmica, Local 48, contiguo al Seguro Social",
+            "phone":"(507) 387-0909 ",
+            "site":"http:\/\/accesos.com.pa",
+            "latitude":9.0097074,
+            "longitude":-79.5176462
+        },
+        {
+            "name":"DOOR AND DOCKS DE PANAMA",
+            "address":"Urbanizacion Industrial Los Angeles, Calle 1 Harry Eno, Local 1. Panama, Panama",
+            "phone":"(507) 260 0300",
+            "site":"http:\/\/www.merik.com\/pa\/",
+            "latitude":9.0022442,
+            "longitude":-79.5294242
+        },
+        {
+            "name":"HERRERIA BARRIOS",
+            "address":"Calle 23 Pueblo Nuevo, detras del Jardin El Bosque. Panama, Panama",
+            "phone":"(507) 261 9226",
+            "site":"http:\/\/www.herreriabarrios.com\/",
+            "latitude":9.0231774,
+            "longitude":-79.5047802
+        },
+        {
+            "name":"HERRERIA SANTIAGO",
+            "address":" Calle 111 en Proyecto Pueblo Nuevo, 544 Zona 9A, Panama, Panama",
+            "phone":"(507) 261-0717",
+            "site":"http:\/\/www.herreriasantiago.com\/",
+            "latitude":9.0020527,
+            "longitude":-79.5131062
+        }
+    ],
+    "pe":[
+        {
+            "name":"ACCESOS AUTOMATICOS",
+            "address":"Av. Alfredo Benavides # 2868, Miraflores, Lima",
+            "phone":"51 (1) 2718562",
+            "site":"http:\/\/www.accesosautomaticossac.com",
+            "latitude":-12.1257155,
+            "longitude":-77.0201475
+        },
+        {
+            "name":"CORPORACION GRANS S.A.C",
+            "address":"Av. Republica de Colombia 159, Of.2, San Isidro, Lima Peru",
+            "phone":"(511) 489-7207",
+            "site":"http:\/\/grans.pe",
+            "latitude":-12.0986115,
+            "longitude":-77.0317192
+        }
+    ]
+}
     let map ;
-    function initMap() {
 
+    function colombia(){
 
         map = new google.maps.Map(document.getElementById("map"), 
             {
-                center: { lat: 9.748917, lng: -83.753428},
+                center: { lat: 4.1156735, lng: -72.9301367},
+                zoom: 5,
+            }
+        );
+
+        places['co'].forEach(location =>{
+            marker = new google.maps.Marker({
+                position: {lat: location['latitude'], lng: location['longitude'] },
+                map: map
+            })
+        })
+    }
+
+    function costaRica(){
+        map = new google.maps.Map(document.getElementById("map"), 
+            {
+                center: { lat: 9.6301892, lng: -84.2541844},
                 zoom: 8,
             }
         );
 
-        var marker1 = new google.maps.Marker(
-            {
-                position: { lat: 9.920083, lng: -84.061972},
+        places['cr'].forEach(location =>{
+            marker = new google.maps.Marker({
+                position: {lat: location['latitude'], lng: location['longitude'] },
                 map: map
-            }
-        )
+            })
+        })
+    }
 
-        var marker2 = new google.maps.Marker(
+    function ecuador(){
+        map = new google.maps.Map(document.getElementById("map"), 
             {
-                position: { lat: 10.016000, lng: -84.214000},
-                map: map
+                center: { lat: -1.7929665, lng: -78.1368875},
+                zoom: 7,
             }
-        )
+        );
+
+        places['ec'].forEach(location =>{
+            marker = new google.maps.Marker({
+                position: {lat: location['latitude'], lng: location['longitude'] },
+                map: map
+            })
+        })
+    }
+
+    function salvador(){
+        map = new google.maps.Map(document.getElementById("map"), 
+            {
+                center: { lat: 13.6931909, lng: -89.2334002},
+                zoom:12,
+            }
+        );
+
+        places['sv'].forEach(location =>{
+            marker = new google.maps.Marker({
+                position: {lat: location['latitude'], lng: location['longitude'] },
+                map: map
+            })
+        })
+    }
+
+    function guatemala(){
+        map = new google.maps.Map(document.getElementById("map"), 
+            {
+                center: { lat: 14.5753301, lng: -90.5937934},
+                zoom:11,
+            }
+        );
+
+        places['gt'].forEach(location =>{
+            marker = new google.maps.Marker({
+                position: {lat: location['latitude'], lng: location['longitude'] },
+                map: map
+            })
+        })
+    }
+
+    function honduras(){
+        map = new google.maps.Map(document.getElementById("map"), 
+            {
+                center: { lat: 14.8587117, lng: -87.7674672},
+                zoom: 8,
+            }
+        );
+
+        places['hn'].forEach(location =>{
+            marker = new google.maps.Marker({
+                position: {lat: location['latitude'], lng: location['longitude'] },
+                map: map
+            })
+        })
+    }
+
+    function mexico(){
+
+        map = new google.maps.Map(document.getElementById("map"), 
+            {
+                center: { lat: 25.31429, lng:-109.135293},
+                zoom: 4.70,
+            }
+        );
+
+        places['mx'].forEach(location =>{
+            marker = new google.maps.Marker({
+                position: {lat: location['latitude'], lng: location['longitude'] },
+                map: map
+            })
+        })
+    }
+
+    function nicaragua(){
+        map = new google.maps.Map(document.getElementById("map"), 
+            {
+                center: { lat: 12.0978181, lng:-86.3285007},
+                zoom: 11,
+            }
+        );
+
+        places['ni'].forEach(location =>{
+            marker = new google.maps.Marker({
+                position: {lat: location['latitude'], lng: location['longitude'] },
+                map: map
+            })
+        })
+    }
+
+    function panama(){
+        map = new google.maps.Map(document.getElementById("map"), 
+            {
+                center: { lat: 8.9842291, lng: -79.528028},
+                zoom:11,
+            }
+        );
+
+        places['pa'].forEach(location =>{
+            marker = new google.maps.Marker({
+                position: {lat: location['latitude'], lng: location['longitude'] },
+                map: map
+            })
+        })
+    }
+
+    function peru(){
+        map = new google.maps.Map(document.getElementById("map"), 
+            {
+                center: { lat: -12.0552073, lng:-77.0627323},
+                zoom:11,
+            }
+        );
+
+        places['pe'].forEach(location =>{
+            marker = new google.maps.Marker({
+                position: {lat: location['latitude'], lng: location['longitude'] },
+                map: map
+            })
+        })
+    }
+
+    function initMap(){
+
     }
 </script>
 
