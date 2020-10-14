@@ -8,9 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;900&display=swap" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAF0Kl43MZE69-pGls4HAe87jrrvGj0sUU&callback=initMap&libraries=&v=weekly" defer></script>
 
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">   
-    
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/PhenomenaDev/Liftmaster-Latam/development/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://raw.githubusercontent.com/PhenomenaDev/Liftmaster-Latam/development/favicon.ico" type="image/x-icon">   
+
     <style> 
         body, html {
             height: 100%;
@@ -88,7 +88,7 @@
             text-align: center; 
             padding-top: 5%; 
             color: #000000; 
-            font-size: 35px;
+            font-size: 28px;
             font-family: 'Lato', sans-serif;
         }
         .footer-img{
@@ -266,7 +266,6 @@
         switch(country){
 
             case 'co':
-                //displayMap('co')
                 colombia()
                 document.getElementById('data').innerHTML =
                     `<div class="data-item">
@@ -366,7 +365,6 @@
                 break;
             
             case 'ec':
-                    //displayMap('ec');
                     ecuador();
                     document.getElementById('data').innerHTML = `
                     <div class="data-item">
@@ -411,7 +409,6 @@
 
             case ('sv'):
             salvador()
-                //displayMap('sv');
                 document.getElementById('data').innerHTML = `
                     <div class="data-item">
                                 <h4>SUCURSAL - Castella Sagarra</h4>
@@ -424,7 +421,6 @@
 
             case ('gt'):
             guatemala()
-            //displayMap('gt');
             document.getElementById('data').innerHTML = `
                 <div class="data-item">
                             <h4>SUCURSAL - Grupo DICORP</h4>
@@ -439,17 +435,16 @@
                             <p>Diagonal 6 16-23 en Zona 10, Centro Comercial La Villa, Ciudad Guatemala, Guatemala</p>
                 </div>
                 <div class="data-item">
-                    <h4>SUCURSAL - Merik Portones de Centroamérica</h4>
-                    <a href="https://merik.com/gt">merik.com/gt</a>
-                    <p>(502) 2208 1600<p/>
-                        <p>1ra Calle 34-58, Zona 11, Col. Toledo, Ciudad de Guatemala.</p>
+                            <h4>SUCURSAL - Merik Portones de Centroamérica</h4>
+                            <a href="https://merik.com/gt">merik.com/gt</a>
+                            <p>(502) 2208 1600<p/>
+                            <p>1ra Calle 34-58, Zona 11, Col. Toledo, Ciudad de Guatemala.</p>
                 </div>
             `;
             break;
             
             case ('hn'):
             honduras()
-                //displayMap('hn');
                 document.getElementById('data').innerHTML = `
                     <div class="data-item">
                         <h4>SUCURSAL - Portomax S de RL</h4>
@@ -474,7 +469,6 @@
 
             case('mx'):
                     mexico()
-                    //displayMap('mx');
                     document.getElementById('data').innerHTML = `
                     <div class="data-item">
                                 <h4>MERIK - Sucursal Aguascalientes</h4>
@@ -655,7 +649,6 @@
 
             case ('ni'):
             nicaragua()
-            //displayMap('ni');
             document.getElementById('data').innerHTML = `
                 <div class="data-item">
                             <h4>SUCURSAL - Portel - Danilo Salinas y CIA</h4>
@@ -669,7 +662,6 @@
             case ('pa'):
 
             panama()
-            //displayMap('pa');
             document.getElementById('data').innerHTML = `
                 <div class="data-item">
                             <h4>SUCURSAL - Accesos Automáticos de Panamá S.A.</h4>
@@ -694,7 +686,6 @@
             
             case ('pe'):
             peru()
-            //displayMap('pa');
             document.getElementById('data').innerHTML = `
                 <div class="data-item">
                             <h4>Accesos Automaticos</h4>
@@ -835,14 +826,6 @@
             "site":"http:\/\/www.portonessalas.com\/",
             "latitude":10.0075983,
             "longitude":-84.2044635
-        },
-        {
-            "name":"MERIK PORTONES DE COSTA RICA",
-            "address":"Cinco esquinas de Tib\u00e1s, 150 metros oeste de la Clinica Clorito Picado, Tib\u00e1s, Heredia, Costa Rica",
-            "phone":"(506) 2258 5795",
-            "site":"http:\/\/www.merik.com\/cr\/",
-            "latitude":9.948917,
-            "longitude":-84.086907
         }
     ],
     "ec":[
@@ -939,14 +922,6 @@
             "site":"https:\/\/colarach.com",
             "latitude":15.493145,
             "longitude":-88.022139
-        },
-        {
-            "name":"IMFERRA - IMPORTADORA FERRETERA",
-            "address":"17 Calle Circunvalacion, 5 y 6 Avenidas, S.E. San Pedro Sula, Honduras",
-            "phone":"(504) 2554 1848",
-            "site":"https:\/\/imferra.com\/",
-            "latitude":15.4898135,
-            "longitude":-88.0211467
         },
         {
             "name":"PORTOMAX S de RL",
@@ -1225,14 +1200,6 @@
             "site":"http:\/\/www.merik.com\/pa\/",
             "latitude":9.0022442,
             "longitude":-79.5294242
-        },
-        {
-            "name":"HERRERIA BARRIOS",
-            "address":"Calle 23 Pueblo Nuevo, detras del Jardin El Bosque. Panama, Panama",
-            "phone":"(507) 261 9226",
-            "site":"http:\/\/www.herreriabarrios.com\/",
-            "latitude":9.0231774,
-            "longitude":-79.5047802
         },
         {
             "name":"HERRERIA SANTIAGO",
